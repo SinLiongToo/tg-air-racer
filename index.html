@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="zh-Hant-TW" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>台語賽車衝衝衝！ | Tâi-gí Chhiong-chhiong-chhiong! - 空氣噴氣賽車學台語</title>
+  <meta name="description" content="結合空氣動力物理學與教育部臺灣台語學習的趣味橫向賽車遊戲！向下噴氣【跳】、向後噴氣【衝】、底盤吸力【黏】倒頭栽，收集台語字卡、學連音變調、升級阿吉號賽車！">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="台語賽車衝衝衝！🏎️ 空氣噴氣賽車學台語">
+  <meta property="og:description" content="跳 (thiàu)、衝 (tshiong)、黏 (liâm) 倒頭栽！8大特色賽道 + 無限奔馳，邊飆車邊學標準教育部台語與連音變調！">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏎️</text></svg>">
+  
+  <!-- 字體載入 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  
+  <!-- 核心樣式 -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- 頂部功能列 -->
+  <header class="topbar">
+    <a class="brand" href="./" title="重新整理首頁">
+      <span class="badge">🏎️ 臺灣台語</span>
+      <span>台語賽車衝衝衝！</span>
+    </a>
+    <div class="tools">
+      <button class="pill" id="btn-dict" title="開啟台語詞彙寶典">📖 <span class="lbl">詞典速查</span></button>
+      <button class="pill" id="btn-garage" title="開啟阿公修車庫">🔧 <span class="lbl">車庫改裝</span></button>
+      <button class="pill" id="btn-theme" title="切換明暗主題">🌓</button>
+      <button class="pill" id="btn-sound" title="切換音效與語音">🔊</button>
+      <button class="pill" id="btn-fs" title="全螢幕模式">⛶</button>
+    </div>
+  </header>
+
+  <!-- 手機直向貼心提示 -->
+  <p class="turn-prompt">📱 請將手機轉橫，賽道視野閣較闊、操控閣較順！ (Tshiánn kā chhiú-ki tńg-huâinn!)</p>
+
+  <!-- 遊戲畫布容器 -->
+  <main class="gamebox">
+    <div id="game"></div>
+  </main>
+
+  <!-- 下方遊戲操作與台語學習指南 -->
+  <section class="info-section">
+    <div class="info-card">
+      <h3>🕹️ 三大核心按鍵 (Three Actions)</h3>
+      <div class="action-keys">
+        <b class="key-btn" style="background:#0ea5e9">⬆</b>
+        <div>
+          <strong>【跳】Thiàu (Hop)</strong>：向下噴出壓縮空氣，阿吉號向上彈起！空中按住滑翔，著陸前按住達成<strong>「穩穩降落 (ún-ún lo̍h-tē)」</strong>獲得雙倍金幣！
+        </div>
+        <b class="key-btn" style="background:#ff8a3d">➡</b>
+        <div>
+          <strong>【衝】Tshiong (Zoom)</strong>：向後強烈噴射推力，極速狂飆！大坡度斜坡與 360 度大迴圈必備！
+        </div>
+        <b class="key-btn" style="background:#8b5cf6">🌀</b>
+        <div>
+          <strong>【黏】Liâm (Stick)</strong>：啟動底盤吸風扇，將車底空氣抽走，牢牢貼附路面，<strong>「倒頭栽 (tò-thâu-tsai)」</strong>掛在天花板也安心！
+        </div>
+      </div>
+      <p class="note-text">電腦鍵盤操控：⬆ 方向鍵 / W / 空白鍵 = 跳，➡ 方向鍵 / D = 衝，⬇ 方向鍵 / S / Shift = 黏。</p>
+    </div>
+
+    <div class="info-card">
+      <h3>⭐ 三星挑戰與詞彙寶石 (Three Stars & Vocab)</h3>
+      <p>
+        ⭐ 順利抵達終點 &nbsp;⭐ 擊敗勁敵阿飛號 (Dash) &nbsp;⭐ 全程無落水完美駕駛！<br><br>
+        賽道上閃爍著<strong>【台語能量字卡】</strong>，碰觸不僅能收集詞彙，還會以<strong>教育部標準台羅發音</strong>即時朗讀！隨時注意你的<strong>💨 氣量表</strong>，吃氣泡與加氣站隨時回滿氣！
+      </p>
+      <p class="note-text">
+        收集賽道上的 🪙 台語金幣，可前往<strong>「阿公ㄟ車庫」</strong>升級氣缸容量、推進力、避震彈簧，還能解鎖台灣黑熊號、番薯號、石虎號、藍鵲號專屬塗裝！
+      </p>
+    </div>
+
+    <div class="info-card">
+      <h3>🔬 空氣動力與在地文化 (Physics & Taiwan Heritage)</h3>
+      <p>
+        <strong>牛頓第三運動定律（作用力與反作用力）</strong>：把空氣向下推，空氣就推賽車向上；把空氣向後噴，賽車就向前狂飆！底盤抽氣扇產生的負壓，更能克服重力倒掛飛馳！<br><br>
+        <strong>台灣名勝巡禮賽道</strong>：奔馳阿里山神木群、高雄港大跨海跳躍、台南億載金城紅磚古堡、台北101高空雙重螺旋！
+      </p>
+      <p class="note-text">
+        教育辭典依據：教育部《臺灣閩南語常用詞辭典》標準台羅 (Tâi-lô) 與連音變調規則（前字變調，後字本調）。
+      </p>
+    </div>
+  </section>
+
+  <!-- 浮動台語詞彙速查視窗 -->
+  <div class="modal-overlay" id="dict-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>📖 台語詞典圖鑑速查 (Tâi-gí Sû-tián)</h2>
+        <button class="close-btn" id="modal-close" title="關閉">✕</button>
+      </div>
+      <div class="modal-body" id="modal-vocab-list">
+        <!-- 動態由 JavaScript 生成 40+ 詞彙卡片 -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 頁腳版權與致敬 -->
+  <footer class="footer">
+    台語賽車衝衝衝！ (TG Air Racer) · 教育部臺灣閩南語推薦用字與標準台羅 · 物理引擎受 Blast Racer 啟發製作 · 
+    <a href="https://sutian.moe.edu.tw/" target="_blank" rel="noopener">教育部臺灣閩南語常用詞辭典</a>
+  </footer>
+
+  <!-- 依賴庫與遊戲程式碼 (Base64 原畫與真人錄音離線封裝) -->
+  <script src="https://cdn.jsdelivr.net/npm/phaser@3.88.2/dist/phaser.min.js"></script>
+  <script src="assets_data.js"></script>
+  <script src="audio_data.js"></script>
+  <script src="tg_dict.js"></script>
+  <script src="tg_voice.js"></script>
+  <script src="sim.js"></script>
+  <script src="game.js"></script>
+
+  <script>
+    // 啟動 Phaser 3 賽車遊戲
+    window.addEventListener("DOMContentLoaded", () => {
+      if (window.TGRacer) {
+        window.TGRacer.start();
+      }
+
+      // 音效切換按鈕
+      const sndBtn = document.getElementById("btn-sound");
+      const updateSndUI = () => {
+        const isMuted = window.TG_VOICE && window.TG_VOICE.isMuted();
+        sndBtn.textContent = isMuted ? "🔇" : "🔊";
+        sndBtn.classList.toggle("active", !isMuted);
+      };
+      updateSndUI();
+
+      sndBtn.onclick = () => {
+        if (window.TG_VOICE) {
+          window.TG_VOICE.setMuted(!window.TG_VOICE.isMuted());
+          updateSndUI();
+          if (!window.TG_VOICE.isMuted() && window.TG_VOICE.sfx.pop) {
+            window.TG_VOICE.sfx.pop();
+          }
+        }
+      };
+
+      // 主題切換 (Light / Dark)
+      const themeBtn = document.getElementById("btn-theme");
+      themeBtn.onclick = () => {
+        const html = document.documentElement;
+        const current = html.getAttribute("data-theme") || "light";
+        const next = current === "light" ? "dark" : "light";
+        html.setAttribute("data-theme", next);
+        themeBtn.textContent = next === "dark" ? "☀️" : "🌓";
+        if (window.TG_VOICE && window.TG_VOICE.sfx.tap) window.TG_VOICE.sfx.tap();
+      };
+
+      // 全螢幕切換
+      const fsBtn = document.getElementById("btn-fs");
+      fsBtn.onclick = () => {
+        const g = window.__tgGame;
+        if (g && g.scale) {
+          g.scale.isFullscreen ? g.scale.stopFullscreen() : g.scale.startFullscreen();
+        }
+      };
+
+      // 車庫快捷鍵
+      const garageBtn = document.getElementById("btn-garage");
+      garageBtn.onclick = () => {
+        const g = window.__tgGame;
+        if (g && g.scene) {
+          g.scene.stop("play");
+          g.scene.stop("dict");
+          g.scene.start("garage");
+          if (window.TG_VOICE && window.TG_VOICE.sfx.tap) window.TG_VOICE.sfx.tap();
+        }
+      };
+
+      // 詞典彈窗模態
+      const dictBtn = document.getElementById("btn-dict");
+      const dictModal = document.getElementById("dict-modal");
+      const modalClose = document.getElementById("modal-close");
+      const modalList = document.getElementById("modal-vocab-list");
+
+      // 渲染詞彙卡片
+      if (window.TG_DICT && window.TG_DICT.VOCABULARY) {
+        modalList.innerHTML = "";
+        window.TG_DICT.VOCABULARY.forEach(v => {
+          const pill = document.createElement("div");
+          pill.className = "vocab-pill";
+          pill.innerHTML = `
+            <div class="row-top">
+              <span class="hanji">${v.hanji}</span>
+              <button class="sound-play-btn" data-id="${v.id}" data-hanji="${v.hanji}" data-tone="${v.toneNum || ''}">🔊 播放</button>
+            </div>
+            <div class="tailo">${v.tailo}</div>
+            <div class="meaning">${v.meaning} (${v.en})</div>
+            <div class="sandhi">連音變調: ${v.sandhi}</div>
+          `;
+          modalList.appendChild(pill);
+        });
+
+        modalList.addEventListener("click", e => {
+          const btn = e.target.closest(".sound-play-btn");
+          if (btn && window.TG_VOICE) {
+            const id = btn.getAttribute("data-id");
+            if (window.TG_VOICE.playWord) {
+              window.TG_VOICE.playWord(id);
+            } else if (window.TG_VOICE.speakTG) {
+              const h = btn.getAttribute("data-hanji");
+              const t = btn.getAttribute("data-tone");
+              window.TG_VOICE.speakTG(h, { toneNum: t });
+            }
+          }
+        });
+      }
+
+      dictBtn.onclick = () => {
+        dictModal.classList.add("open");
+        if (window.TG_VOICE && window.TG_VOICE.sfx.pop) window.TG_VOICE.sfx.pop();
+      };
+
+      modalClose.onclick = () => {
+        dictModal.classList.remove("open");
+      };
+
+      dictModal.onclick = e => {
+        if (e.target === dictModal) {
+          dictModal.classList.remove("open");
+        }
+      };
+    });
+  </script>
+</body>
+</html>
