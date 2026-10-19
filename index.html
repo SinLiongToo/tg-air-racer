@@ -85,6 +85,56 @@
         教育辭典依據：教育部《臺灣閩南語常用詞辭典》標準台羅 (Tâi-lô) 與連音變調規則（前字變調，後字本調）。
       </p>
     </div>
+
+    <!-- 參考專案圖形生成原理解析 & Git 倉庫版本狀態 -->
+    <div class="info-card full-card" id="tech-origin">
+      <h3>🎨 參考專案圖形生成原理解析 (How Reference Graphics Were Produced)</h3>
+      <p style="color:var(--text-soft); font-size:14.5px; margin-bottom:12px;">
+        本遊戲核心物理模型靈感來自童書科技遊戲 <a href="https://lioneer32232002-commits.github.io/kids-picture-books/aircar/play.html" target="_blank" rel="noopener" style="color:var(--accent); font-weight:700;">Blast Racer (The Car That Blasts Air)</a>。在此深度解析參考專案的圖形生成機制，以及本專案如何解決本地載入問題並以 AI 全面重繪昇華：
+      </p>
+
+      <div class="analysis-grid">
+        <div class="analysis-col">
+          <h4>🖼️ 1. 原版參考專案的雙重繪圖架構</h4>
+          <ul>
+            <li><strong>實體水彩繪本掃描原畫</strong>：原作者為兒童科普繪本《The Car That Blasts Air》繪製了實體水彩手繪插畫（噴氣車、人物與背景），掃描去背轉為 WebP 格式（<code>img/zip.webp</code>、<code>img/dash.webp</code>），在 Web 伺服器環境下由 Phaser 3 載入顯示。</li>
+            <li><strong>程序化向量/幾何安全回退機制</strong>：在 <code>Boot.create()</code> 中設計了安全回退函式 <code>fake(k, w, h, draw)</code>。若圖片載入失敗，會由 HTML5 Canvas 動態繪製幾何形狀（圓角矩形 <code>fillRoundedRect</code>、圓形 <code>fillCircle</code>、三角形 <code>fillTriangle</code>）。</li>
+          </ul>
+        </div>
+
+        <div class="analysis-col">
+          <h4>⚠️ 2. 為何一開始在本地開啟會變「死板向量圖」？</h4>
+          <ul>
+            <li><strong>瀏覽器 CORS 沙盒攔截</strong>：當直接在本地端以 <code>file:///</code> 協定開啟 <code>index.html</code> 時，現代瀏覽器（Chrome、Edge）基於同源安全政策，會阻擋本地端相對路徑的圖片 fetch/XHR 讀取請求。</li>
+            <li><strong>觸發了程序化幾何回退</strong>：這使得 Phaser 判定圖片載入失敗，<strong>觸發了備用的 <code>fake(...)</code> 幾何繪圖</strong>！玩家看到的並非原本的水彩插畫，而是瀏覽器臨時繪製的幾何線框，因此視覺感受顯得硬冷、死板。</li>
+          </ul>
+        </div>
+
+        <div class="analysis-col">
+          <h4>🚀 3. 本專案之突破與 AI 昇華重繪</h4>
+          <ul>
+            <li><strong>Base64 雙離線封裝（Zero-CORS）</strong>：將所有繪圖與 49 首教育部真人發音直接編碼為 Base64 Data URI，徹底免除跨域限制，無論在本地端直接雙擊檔案或在 GitHub Pages 線上瀏覽，皆能 100% 穩定呈現高品質原畫與原音。</li>
+            <li><strong>AI 童書水彩生圖工程</strong>：全面脫離原版通用車輛，採用專屬正側面（Orthogonal Profile）Prompt 咒語工程重繪，打造專屬於台灣兒童教育的<strong>台灣黑熊號</strong>、<strong>番薯火箭號</strong>、<strong>斗笠牛仔修車阿公</strong>與<strong>阿里山日出神木雲海</strong>。</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Git 倉庫初始化與首次 Commit 狀態 -->
+      <div class="git-status-box">
+        <div class="git-badge">
+          <span>📦</span>
+          <span>Git 倉庫已完成初始化與首次 Commit (<code>main</code> 分支) · 全自動部署至 GitHub Pages</span>
+        </div>
+        <div class="git-links">
+          <a class="git-btn-link" href="https://github.com/SinLiongToo/tg-air-racer" target="_blank" rel="noopener">
+            <span>🐙 GitHub 專案倉庫</span>
+          </a>
+          <a class="git-btn-link" href="https://sinliongtoo.github.io/tg-air-racer/" target="_blank" rel="noopener">
+            <span>🌐 GitHub Pages 線上玩</span>
+          </a>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- 浮動台語詞彙速查視窗 -->
@@ -102,8 +152,13 @@
 
   <!-- 頁腳版權與致敬 -->
   <footer class="footer">
-    台語賽車衝衝衝！ (TG Air Racer) · 教育部臺灣閩南語推薦用字與標準台羅 · 物理引擎受 Blast Racer 啟發製作 · 
-    <a href="https://sutian.moe.edu.tw/" target="_blank" rel="noopener">教育部臺灣閩南語常用詞辭典</a>
+    <p>🏎️ <strong>台語賽車衝衝衝！ (TG Air Racer)</strong> · 臺灣台語空氣動力物理賽車學習遊戲</p>
+    <p style="margin-top:6px;">
+      教育部臺灣閩南語常用詞辭典推薦用字與標準台羅 · 物理引擎受 
+      <a href="https://lioneer32232002-commits.github.io/kids-picture-books/aircar/play.html" target="_blank" rel="noopener">Blast Racer</a> 啟發 · 
+      代碼倉庫：<a href="https://github.com/SinLiongToo/tg-air-racer" target="_blank" rel="noopener">GitHub: SinLiongToo/tg-air-racer</a> · 
+      詞典依據：<a href="https://sutian.moe.edu.tw/" target="_blank" rel="noopener">教育部臺灣閩南語常用詞辭典</a>
+    </p>
   </footer>
 
   <!-- 依賴庫與遊戲程式碼 (Base64 原畫與真人錄音離線封裝) -->
